@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Add Reservation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-control {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .form-control:focus {
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .btn-primary {
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #2c5282;
+        }
+        .nav-link {
+            color: #2d3748;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #2b6cb0;
+        }
+        footer {
+            background-color: #2d3748;
+            color: white;
+        }
+        footer a {
+            color: #a0aec0;
+        }
+        footer a:hover {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 p-4 mb-6 shadow-md rounded-md">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img  src="https://static.vecteezy.com/system/resources/thumbnails/032/752/217/small_2x/super-car-logo-icon-ai-generative-free-png.png" class="h-8" alt="locages-logo" />
+                <span class="text-2xl font-semibold text-gray-900 dark:text-white">Locages</span>
+            </a>
+            <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-multi-level" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li>
+                        <a href="/index" class="nav-link">Cars</a>
+                    </li>
+                    <li>
+                        <a href="/indexMaintenance" class="nav-link">Maintenances</a>
+                    </li>
+                    <li>
+                        <a href="/indexEmployee" class="nav-link">Employees</a>
+                    </li>
+                    <li>
+                        <a href="/indexClient" class="nav-link">Clients</a>
+                    </li>
+                    <li>
+                        <a href="/indexReservation" class="nav-link">Reservations</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-4xl font-bold text-gray-800 mb-6 border-b-2 border-gray-300 pb-2">Add cars</h2>
+
+    <form action="/ajouterOnce" method="post">
+        <div class="mb-3">
+            <label for="NbrPlate" class="form-label">NbrPlate</label>
+            <input type="text" class="form-control w-full" id="NbrPlate" name="NbrPlate">
+            <span class="text-danger" th:errors="${car.nbrPlate}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="KmDriven" class="form-label">Kilometers Driven</label>
+            <input type="number" class="form-control w-full" id="KmDriven" name="KmDriven">
+            <span class="text-danger" th:errors="${car.kmDriven}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Color" class="form-label">Color</label>
+            <input type="text" class="form-control w-full" id="Color" name="Color">
+            <span class="text-danger" th:errors="${car.color}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="RentPrice" class="form-label">Rent Price</label>
+            <input type="number" class="form-control w-full" id="RentPrice" name="RentPrice">
+            <span class="text-danger" th:errors="${car.rentPrice}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="NbrSeats" class="form-label">Number of Seats</label>
+            <input type="number" class="form-control w-full" id="NbrSeats" name="NbrSeats">
+            <span class="text-danger" th:errors="${car.nbrSeats}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Type" class="form-label">Type</label>
+            <input type="text" class="form-control w-full" id="Type" name="Type">
+            <span class="text-danger" th:errors="${car.type}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Availability" class="form-label">Availability</label>
+            <input type="checkbox" class="form-check-input" id="Availability" name="Availability">
+            <span class="text-danger" th:errors="${car.availability}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Cmodel" class="form-label">Model</label>
+            <input type="text" class="form-control w-full" id="Cmodel" name="Cmodel">
+            <span class="text-danger" th:errors="${car.cmodel}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Make" class="form-label">Make</label>
+            <input type="text" class="form-control w-full" id="Make" name="Make">
+            <span class="text-danger" th:errors="${car.make}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="CarPrice" class="form-label">Car Price</label>
+            <input type="number" class="form-control w-full" id="CarPrice" name="CarPrice">
+            <span class="text-danger" th:errors="${car.carPrice}"></span>
+
+        </div>
+        <div class="mb-3">
+            <label for="CarGains" class="form-label">Car Gains</label>
+            <input type="number" class="form-control w-full" id="CarGains" name="CarGains">
+            <span class="text-danger" th:errors="${car.carGains}"></span>
+        </div>
+        <!-- Add more input fields for additional attributes if needed -->
+        <button type="submit" class="btn btn-primary form-control w-50" value="Ajouter">Ajouter</button>
+    </form>
+</div>
+<footer class="bg-gray-800 text-white mt-6">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <div class="logo-img mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/032/752/217/small_2x/super-car-logo-icon-ai-generative-free-png.png" class="h-8 mr-3" alt="Locages Logo" />
+                    <span class="self-center text-2xl font-semibold">Locages</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Resources</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-4">
+                            <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                        </li>
+                        <li>
+                            <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Follow us</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-4">
+                            <a href="https://github.com/ThemeSelect" class="hover:underline">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://discord.gg/ThemeSelect" class="hover:underline">Discord</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Legal</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-4">
+                            <a href="#" class="hover:underline">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700" />
+        <div class="text-center">
+            <span class="block text-sm text-gray-500 sm:text-center">© 2023 <a href="/" class="hover:underline">Locages™</a>. All Rights Reserved.</span>
+        </div>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+</html>

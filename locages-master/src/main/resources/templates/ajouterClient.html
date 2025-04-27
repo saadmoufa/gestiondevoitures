@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Add Reservation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f0f4f8;
+            color: #1a202c;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-control {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .form-control:focus {
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .btn-primary {
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #2c5282;
+        }
+        .nav-link {
+            color: #2d3748;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #2b6cb0;
+        }
+        footer {
+            background-color: #2d3748;
+            color: white;
+        }
+        footer a {
+            color: #a0aec0;
+        }
+        footer a:hover {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 p-4 mb-6 shadow-md rounded-md">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img  src="https://static.vecteezy.com/system/resources/thumbnails/032/752/217/small_2x/super-car-logo-icon-ai-generative-free-png.png" class="h-8" alt="locages-logo" />
+                <span class="text-2xl font-semibold text-gray-900 dark:text-white">Locages</span>
+            </a>
+            <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-multi-level" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li>
+                        <a href="/index" class="nav-link">Cars</a>
+                    </li>
+                    <li>
+                        <a href="/indexMaintenance" class="nav-link">Maintenances</a>
+                    </li>
+                    <li>
+                        <a href="/indexEmployee" class="nav-link">Employees</a>
+                    </li>
+                    <li>
+                        <a href="/indexClient" class="nav-link">Clients</a>
+                    </li>
+                    <li>
+                        <a href="/indexReservation" class="nav-link">Reservations</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-4xl font-bold text-gray-800 mb-6 border-b-2 border-gray-300 pb-2">Add Client</h2>
+
+    <form action="/ajouterOnceC" method="post">
+        <div class="mb-3">
+            <label for="NbrCin" class="form-label">Number CIN</label>
+            <input type="text" maxlength="8" class="form-control w-full" id="NbrCin" name="NbrCin">
+            <span class="text-danger" th:errors="${client.nbrCin}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Name</label>
+            <input type="text" class="form-control w-full" id="Name" name="Name">
+            <span class="text-danger" th:errors="${client.name}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control w-full" id="LastName" name="LastName">
+            <span class="text-danger" th:errors="${client.lastName}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="PhoneNbr" class="form-label">Phone Number</label>
+            <input type="tel" maxlength="12" class="form-control w-full" id="PhoneNbr" name="PhoneNbr">
+            <span class="text-danger" th:errors="${client.phoneNbr}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" class="form-control w-full" id="Email" name="Email">
+            <span class="text-danger" th:errors="${client.email}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="DrvLNbr" class="form-label">Driver's License Number</label>
+            <input type="text" class="form-control w-full" id="DrvLNbr" name="DrvLNbr">
+            <span class="text-danger" th:errors="${client.drvLNbr}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="DrvLExpD" class="form-label">Driver's License Expiry Date</label>
+            <input type="date" class="form-control w-full" id="DrvLExpD" name="DrvLExpD">
+            <span class="text-danger" th:errors="${client.drvLExpD}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="Address" class="form-label">Address</label>
+            <textarea class="form-control w-full" id="Address" name="Address" maxlength="200"></textarea>
+            <span class="text-danger" th:errors="${client.address}"></span>
+        </div>
+        <button type="submit" class="btn btn-primary form-control w-50" value="Add">Add</button>
+    </form>
+</div>
+<footer class="bg-gray-800 text-white mt-6">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <div class="logo-img mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/032/752/217/small_2x/super-car-logo-icon-ai-generative-free-png.png" class="h-8 mr-3" alt="Locages Logo" />
+                    <span class="self-center text-2xl font-semibold">Locages</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Resources</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-4">
+                            <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                        </li>
+                        <li>
+                            <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Follow us</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-4">
+                            <a href="https://github.com/ThemeSelect" class="hover:underline">Github</a>
+                        </li>
+                        <li>
+                            <a href="https://discord.gg/ThemeSelect" class="hover:underline">Discord</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold uppercase">Legal</h2>
+                    <ul class="text-gray-400">
+                        <li class="mb-4">
+                            <a href="#" class="hover:underline">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700" />
+        <div class="text-center">
+            <span class="block text-sm text-gray-500 sm:text-center">© 2023 <a href="/" class="hover:underline">Locages™</a>. All Rights Reserved.</span>
+        </div>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+</html>
